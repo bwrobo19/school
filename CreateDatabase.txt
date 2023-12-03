@@ -1,0 +1,136 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Nov 27, 2023 at 02:38 AM
+-- Server version: 10.1.37-MariaDB
+-- PHP Version: 7.3.0
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `school_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course`
+--
+
+CREATE TABLE `tbl_course` (
+  `courseID` int(11) NOT NULL,
+  `title` varchar(256) NOT NULL,
+  `courseNum` varchar(32) NOT NULL,
+  `description` text NOT NULL,
+  `maxEnrollment` int(11) NOT NULL,
+  `currentEnrollment` int(11) NOT NULL,
+  `sessionID` int(11) NOT NULL,
+  `prerequisiteID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_enrollment`
+--
+
+CREATE TABLE `tbl_enrollment` (
+  `courseID` int(11) NOT NULL,
+  `userID` int(11) NOT NULL,
+  `status` varchar(32) NOT NULL,
+  `requestDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_session`
+--
+
+CREATE TABLE `tbl_session` (
+  `sessionID` int(11) NOT NULL,
+  `description` varchar(64) NOT NULL,
+  `year` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `userID` int(11) NOT NULL,
+  `firstName` varchar(64) NOT NULL,
+  `lastName` varchar(64) NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `city` varchar(128) NOT NULL,
+  `state` varchar(64) NOT NULL,
+  `zip` varchar(64) NOT NULL,
+  `phone` varchar(16) NOT NULL,
+  `ssn` bigint(20) NOT NULL,
+  `userType` varchar(32) NOT NULL,
+  `email` varchar(256) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `password` varchar(256) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_course`
+--
+ALTER TABLE `tbl_course`
+  ADD PRIMARY KEY (`courseID`);
+
+--
+-- Indexes for table `tbl_session`
+--
+ALTER TABLE `tbl_session`
+  ADD PRIMARY KEY (`sessionID`);
+
+--
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`userID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_course`
+--
+ALTER TABLE `tbl_course`
+  MODIFY `courseID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_session`
+--
+ALTER TABLE `tbl_session`
+  MODIFY `sessionID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  MODIFY `userID` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
